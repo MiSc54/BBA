@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>Bernds Body App</title>
+  <meta name="description" content="Persönliche Fitness-Tracking App: Geräte, Übungen, Trainingspläne und Fortschritt." />
+
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Bernds Body" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <style>
+    html, body { margin: 0; padding: 0; background: #0a0a0a; }
+    #root { min-height: 100vh; }
+    #boot-loader {
+      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: #0a0a0a; color: #8f8f8f; font-family: monospace; font-size: 13px; letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"><div id="boot-loader">Lade Bernds Body App...</div></div>
+
+  <!-- Ersatz für die Claude.ai-Artifact-Speicherfunktion (window.storage), -->
+  <!-- damit die App eigenständig läuft und lokal auf dem Gerät speichert. -->
+  <script>
+    (function () {
+      const PREFIX = "bba:";
+      window.storage = {
+        async get(key) {
+          const raw = window.localStorage.getItem(PREFIX + key);
+          if (raw === null) throw new Error("Key not found: " + key);
+          return { key: key, value: raw, shared: false };
+        },
+        async set(key, value) {
+          window.localStorage.setItem(PREFIX + key, value);
+          return { key: key, value: value, shared: false };
+        },
+        async delete(key) {
+          window.localStorage.removeItem(PREFIX + key);
+          return { key: key, deleted: true, shared: false };
+        },
+        async list(prefix) {
+          const p = PREFIX + (prefix || "");
+          const keys = Object.keys(window.localStorage)
+            .filter((k) => k.startsWith(p))
+            .map((k) => k.slice(PREFIX.length));
+          return { keys: keys, prefix: prefix, shared: false };
+        },
+      };
+    })();
+  </script>
+
+  <script type="module" src="./app.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
