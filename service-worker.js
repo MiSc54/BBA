@@ -1,4 +1,4 @@
-const CACHE_NAME = "bernds-body-app-v11";
+const CACHE_NAME = "bernds-body-app-v12";
 const APP_SHELL = [
   "./",
   "./index.html",
