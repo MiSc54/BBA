@@ -27,6 +27,9 @@ export function GlobalStyles() {
         --surface-1: #0d0d0d;
         --surface-2: #0e0e0e;
         --surface-3: #1a1a1a;
+        /* Hintergrund der Kopfzeile (Menüreiter) - eigene Variable, damit sie
+           im Light Mode mitgeändert werden kann (siehe .theme-light unten). */
+        --nav-bg: rgba(10,10,10,0.92);
         font-family: 'Inter', sans-serif;
         background: var(--bg);
         color: var(--text);
@@ -54,6 +57,7 @@ export function GlobalStyles() {
         --surface-1: #f7f7f3;
         --surface-2: #ffffff;
         --surface-3: #e9e8e2;
+        --nav-bg: rgba(242,242,238,0.92);
       }
       /* Der Glitch/RGB-Split-Effekt der Überschriften braucht einen dunklen
          Hintergrund (mix-blend-mode "screen"), um sichtbar zu sein - im
@@ -87,7 +91,7 @@ export function GlobalStyles() {
         position: sticky; top: 0; z-index: 20;
         display: flex; align-items: center; justify-content: space-between;
         gap: 16px; padding: 14px 24px;
-        background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+        background: var(--nav-bg); backdrop-filter: blur(8px);
         border-bottom: 1px solid var(--border);
         flex-wrap: wrap;
       }
