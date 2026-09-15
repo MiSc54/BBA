@@ -1,0 +1,42 @@
+/* =========================================================================
+   Zentrale Sammlung aller in der App verwendeten Icons (lucide-react). Einmal hier importiert, damit nicht jede Komponente einzeln von der externen Icon-Bibliothek abhängt.
+   Teil der Modul-Aufteilung von app.js (siehe PROJECT_MAP.md).
+   ========================================================================= */
+
+export {
+  LayoutDashboard,
+  Wrench,
+  Dumbbell,
+  ClipboardList,
+  BookOpen,
+  Plus,
+  Trash2,
+  Check,
+  ChevronUp,
+  ChevronDown,
+  Sparkles,
+  Play,
+  Clock,
+  Flame,
+  TrendingUp,
+  X,
+  Search,
+  Loader2,
+  History,
+  ChevronRight,
+  CircleCheck,
+  Settings,
+  Users,
+  Download,
+  Upload,
+  Calendar,
+  ChevronsUpDown,
+  RotateCcw,
+  Copy,
+  ArrowUp,
+  Heart,
+  Trophy,
+  FileDown,
+  Sun,
+  Moon,
+} from "https://esm.sh/lucide-react@0.383.0?deps=react@18.3.1";
